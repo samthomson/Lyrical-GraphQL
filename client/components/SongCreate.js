@@ -3,6 +3,8 @@ import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 import { Link, hashHistory } from 'react-router'
 
+import fetchSongsQuery from '../queries/fetchSongs'
+
 class SongCreate extends Component {
 
 	constructor(props) {
@@ -15,6 +17,9 @@ class SongCreate extends Component {
 		event.preventDefault()
 		
 		this.props.mutate({
+			refetchQueries: [{
+				query: fetchSongsQuery
+			}],
 			variables: {
 				title: this.state.title
 			}
