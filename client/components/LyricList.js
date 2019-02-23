@@ -4,13 +4,13 @@ import { graphql } from 'react-apollo'
 
 class LyricList extends Component {
 
-	onLike(id) {
+	onLike(id, likes) {
 		this.props.mutate(
 			{
 				optimisticResponse: {
 					__typename: 'Mutation',
 					likeLyric: {
-						id: id,
+						id,
 						__typename: 'LyricType',
 						likes: likes + 1
 					}
@@ -30,7 +30,7 @@ class LyricList extends Component {
 					<div className="vote-box">
 						<i
 							className="material-icons"
-							onClick={() => this.onLike(id)}
+							onClick={() => this.onLike(id, likes)}
 						>thumb_up</i>
 						{likes}
 					</div>
