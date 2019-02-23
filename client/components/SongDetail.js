@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
+import { Link } from 'react-router'
 import fetchSong from './../queries/fetchSong'
 
 class SongDetail extends Component {
@@ -10,13 +11,15 @@ class SongDetail extends Component {
 	}
 
 	render() {
-		console.log(this.props)
+		const { song } = this.props.data
+
+		if (!song) { return <div>loading..</div> }
 		return (
-			<div>				
+			<div>
+				<Link to="/">Back</Link>			
 				<h3>Song detail</h3>
 
-				{this.props.data.song && ( this.props.data.song.title
-				)}
+				{ song.title }
 			</div>
 		)
 	}
